@@ -6,8 +6,8 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    item_name = params 
-    if req.path == "/items/"
+    item_name = params
+    if req.path.match(/items/)
       item
       resp.write item.price
     else
