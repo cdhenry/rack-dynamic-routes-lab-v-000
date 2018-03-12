@@ -6,9 +6,11 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    item_name = params
     if req.path.match(/items/)
-      item
+      item_name = req.path.split("items").last
+      if item = @@items.find{|item| item.name == item_name}
+        resp.write item.price
+      item = 
       resp.write item.price
     else
       resp.write "Route not found"
